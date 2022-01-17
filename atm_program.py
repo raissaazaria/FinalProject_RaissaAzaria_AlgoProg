@@ -42,9 +42,9 @@ while True: #start looping with the true value
                     print("Sorry. You don't have enough balance to continue this transaction")
                     print("Please add nominal balance to continue this transaction")
 
-        elif selectMenu == 3:
-                nominal = float(input("Enter the nominal balance:")) #enter the amount of money that will be save
-                checkDeposit = input("Confirmation: You will save the following nominal? y/n" + str(nominal) + " ")
+        elif selectMenu == 3: 
+                nominal = float(input("Enter the nominal balance:")) #enter the amount of money that will be save 
+                checkDeposit = input("Confirmation: You will save the following nominal? " + str(nominal) + " ") #confirming to users
 
                 if checkDeposit =="y":
                     atm.depositBalance(nominal)
@@ -54,16 +54,16 @@ while True: #start looping with the true value
 
 
         elif selectMenu == 4:
-            verifyPin = int(input("Enter your Pin"))
+            verifyPin = int(input("Enter your Pin")) #user need to input their last code to confirm
 
-            while verifyPin != int(atm.checkPin()):
+            while verifyPin != int(atm.checkPin()): #if pin are wrong user need to try inputing again
                 print("You entered the wrong pin, try again:")
 
-                changePin = int(input("Please enter new pin:"))
+                changePin = int(input("Please enter new pin:")) #enter new pin
                 print("You have successfully changed your pin")
-                verifynewPin = int(input("Enter new pin:"))
+                verifynewPin = int(input("Enter new pin:")) #verfying new pin
 
-                if verifynewPin == changePin:
+                if verifynewPin == changePin: #if the value of both pin are true print success
                     print("New pin success")
                 else:
                     print("Sorry, wrong pin. Try again")
