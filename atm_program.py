@@ -32,8 +32,6 @@ while True: #start looping with the true value
 
                 if checkWithdraw == "y": #checking balance before debiting
                     print("Your Balance is: Rp. " + str(atm.checkBalance()) + "")
-                else:
-                    break
                 if nominal < atm.checkBalance(): #program will debit money if user fullfil the condition
                     atm.withdrawBalance(nominal)
                     print("Debit Transaction Success")
@@ -42,29 +40,30 @@ while True: #start looping with the true value
                     print("Sorry. You don't have enough balance to continue this transaction")
                     print("Please add nominal balance to continue this transaction")
 
-        elif selectMenu == 3: 
-                nominal = float(input("Enter the nominal balance:")) #enter the amount of money that will be save 
-                checkDeposit = input("Confirmation: You will save the following nominal? " + str(nominal) + " ") #confirming to users
 
-                if checkDeposit =="y":
-                    atm.depositBalance(nominal)
-                    print("Your Balance Now Is: Rp. " + str(atm.checkBalance()) + "\n")
-                else:
-                    break
+        elif selectMenu == 3:
+                nominal = float(input("Enter the nominal balance:")) #enter the amount of money that will be save
+                checkDeposit = input("Confirmation: You will save the following nominal? " + str(nominal) + " ")
+                atm.changeBalance(nominal) #adding nominal 
+
+                print("Your Balance Now Is: Rp. " + str(atm.checkBalance()) + "\n") #Printing the final balance
+
 
 
         elif selectMenu == 4:
-            verifyPin = int(input("Enter your Pin")) #user need to input their last code to confirm
+            verifyPin = int(input("Enter your Pin:")) #value must be wrong
 
-            while verifyPin != int(atm.checkPin()): #if pin are wrong user need to try inputing again
+            while verifyPin != int(atm.checkPin()):
                 print("You entered the wrong pin, try again:")
 
-                changePin = int(input("Please enter new pin:")) #enter new pin
+                changePin = int(input("Please enter new pin:")) #pprogram ask user to enter the new pin
                 print("You have successfully changed your pin")
-                verifynewPin = int(input("Enter new pin:")) #verfying new pin
+                verifynewPin = int(input("Enter new pin:"))
 
-                if verifynewPin == changePin: #if the value of both pin are true print success
+                if verifynewPin == changePin: #new pin will be verified
                     print("New pin success")
+                    atm.changePins(changePin) #replacing pin
+                    break
                 else:
                     print("Sorry, wrong pin. Try again")
 
